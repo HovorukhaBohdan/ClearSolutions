@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/registration")
     public UserResponseDto register(
             @RequestBody @Valid UserRequestDto userRequestDto
     ) throws UnderageException, RegistrationException {
@@ -40,7 +40,7 @@ public class UserController {
     @PatchMapping("/{id}")
     public UserResponseDto updatePartially(
             @PathVariable Long id,
-            @RequestBody UserUpdateDto userUpdateDto
+            @RequestBody @Valid UserUpdateDto userUpdateDto
     ) throws IllegalAccessException, UnderageException, EntityNotFoundException {
         return userService.updatePartially(id, userUpdateDto);
     }
