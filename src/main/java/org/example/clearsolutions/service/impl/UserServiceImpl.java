@@ -1,5 +1,9 @@
 package org.example.clearsolutions.service.impl;
 
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.clearsolutions.dto.UserRequestDto;
 import org.example.clearsolutions.dto.UserResponseDto;
@@ -13,11 +17,6 @@ import org.example.clearsolutions.repository.UserRepository;
 import org.example.clearsolutions.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -72,7 +71,6 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }
-
 
         return userMapper.toDto(userRepository.save(user));
     }

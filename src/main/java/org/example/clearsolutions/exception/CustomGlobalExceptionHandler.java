@@ -1,5 +1,9 @@
 package org.example.clearsolutions.exception;
 
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -11,11 +15,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -39,7 +38,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, headers, status);
     }
 
-    @ExceptionHandler({EntityNotFoundException.class, UnderageException.class, RegistrationException.class})
+    @ExceptionHandler({
+            EntityNotFoundException.class,
+            UnderageException.class,
+            RegistrationException.class
+    })
     protected ResponseEntity<Object> handleCustomException(Exception exception) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
